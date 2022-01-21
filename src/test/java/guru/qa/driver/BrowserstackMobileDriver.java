@@ -4,7 +4,6 @@ import com.codeborne.selenide.WebDriverProvider;
 import guru.qa.config.BrowserStackConfig;
 import io.appium.java_client.android.AndroidDriver;
 import org.aeonbits.owner.ConfigFactory;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -17,13 +16,6 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
     private static BrowserStackConfig config =
             ConfigFactory.create(BrowserStackConfig.class);
 
-    public static URL getBrowserstackUrl() {
-        try {
-            return new URL("http://hub-cloud.browserstack.com/wd/hub");
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @Nonnull
     @Override
@@ -46,7 +38,10 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
 
         // Initialise the remote Webdriver using BrowserStack remote URL
         // and desired capabilities defined above
-        return new AndroidDriver(getBrowserstackUrl(), desiredCapabilities);
+        try {
+            return new AndroidDriver<>(new URL("http://hub-cloud.browserstack.com/wd/hub"), desiredCapabilities);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
     }
-
 }

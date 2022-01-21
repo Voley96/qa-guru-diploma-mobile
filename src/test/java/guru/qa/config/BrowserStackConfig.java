@@ -2,8 +2,6 @@ package guru.qa.config;
 
 import org.aeonbits.owner.Config;
 
-import java.net.URL;
-
 @Config.Sources({
         "classpath:browserstack.properties"
 })
