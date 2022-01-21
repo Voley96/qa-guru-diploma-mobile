@@ -16,11 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AndroidSampleTests {
 
-    public AndroidSampleTests() {
-    }
+    DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 
-    public DesiredCapabilities getCaps() {
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+    public void setCaps() {
         desiredCapabilities.setCapability("browserstack.user", "vovatester_C2F9Yi");
         desiredCapabilities.setCapability("browserstack.key", "fiXzyr4MbyKsg7RTSpVS");
 
@@ -35,16 +33,13 @@ public class AndroidSampleTests {
         desiredCapabilities.setCapability("project", "Appium tests");
         desiredCapabilities.setCapability("build", "browserstack-build #1");
         desiredCapabilities.setCapability("name", "first_test");
-
-        return desiredCapabilities;
     }
-
 
 
     @Test
     void appiumTest() throws InterruptedException, MalformedURLException {
         AndroidDriver<AndroidElement> driver = new AndroidDriver<>(
-                new URL("http://hub.browserstack.com/wd/hub"), getCaps());
+                new URL("http://hub.browserstack.com/wd/hub"), desiredCapabilities);
 
         AndroidElement searchElement = (AndroidElement) new WebDriverWait(driver, 30).until(
                 ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("Search Wikipedia")));

@@ -3,7 +3,6 @@ package guru.qa.driver;
 import com.codeborne.selenide.WebDriverProvider;
 import guru.qa.config.BrowserStackConfig;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -13,7 +12,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BrowserstackMobileDriver implements WebDriverProvider {
-    private static final BrowserStackConfig config =
+
+    private static BrowserStackConfig config =
             ConfigFactory.create(BrowserStackConfig.class);
 
     public static URL getBrowserstackUrl() {
