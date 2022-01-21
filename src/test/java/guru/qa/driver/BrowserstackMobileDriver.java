@@ -13,12 +13,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BrowserstackMobileDriver implements WebDriverProvider {
-    private static final BrowserStackConfig config =
+    private final BrowserStackConfig config =
             ConfigFactory.create(BrowserStackConfig.class, System.getProperties());
 
     public static URL getBrowserstackUrl() {
         try {
-            return new URL(config.url());
+            return new URL("http://hub.browserstack.com/wd/hub");
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -32,7 +32,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
         desiredCapabilities.setCapability("browserstack.key", config.key());
 
         // Set URL of the application under test
-        desiredCapabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
+        desiredCapabilities.setCapability("app", config.app());
 
         // Specify device and os_version for testing
         desiredCapabilities.setCapability("device", "Google Pixel 3");

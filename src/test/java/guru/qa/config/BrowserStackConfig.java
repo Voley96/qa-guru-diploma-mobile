@@ -15,6 +15,6 @@ public interface BrowserStackConfig extends Config {
     @Config.Key("browserstack.key")
     String key();
 
-    @Config.Key("browserstack.url")
-    String url();
+    @Config.Key("browserstack.app")
+    String app();
 }
