@@ -13,7 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BrowserstackMobileDriver implements WebDriverProvider {
-    private final BrowserStackConfig config =
+    private static final BrowserStackConfig config =
             ConfigFactory.create(BrowserStackConfig.class, System.getProperties());
 
     public static URL getBrowserstackUrl() {
