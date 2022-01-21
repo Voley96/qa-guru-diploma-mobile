@@ -1,39 +1,37 @@
 package guru.qa.tests;
 
-import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.MobileBy;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Selectors.byClassName;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-import static io.qameta.allure.Allure.step;
+import static java.lang.String.*;
 
 
 public class AndroidAppiumSelenideTests extends TestBase {
 
-    @Test
-    void shouldSearch() {
-        step("Type BrowserStack in search query", () -> {
-            $(MobileBy.AccessibilityId("Search Wikipedia")).click();
-            $(MobileBy.id("org.wikipedia.alpha:id/search_src_text")).sendKeys("BrowserStack");
-        });
-
-        step("Verify text view size greater than 0", () -> {
-            $$(byClassName("android.widget.TextView")).shouldHave(sizeGreaterThan(0));
-        });
-    }
+    SelenideElement textView = $(MobileBy.id("org.wikipedia.alpha:id/primaryTextView"));
+    SelenideElement continueButton = $(MobileBy.id("org.wikipedia.alpha:id/fragment_onboarding_forward_button"));
 
     @Test
-    void shouldHaveTextWhenEmptyArticles() {
-        step("Click to history tab", () -> {
-            $$(MobileBy.id("org.wikipedia.alpha:id/icon")).get(2).click();
-        });
+    void shouldPassWalkThrough() {
+        textView.shouldHave(text("The Free Encyclopedia …in over 300 languages"));
 
-        step("Verify text is present", () -> {
-            $(MobileBy.id("org.wikipedia.alpha:id/history_empty_title"))
-                    .shouldHave(Condition.text("No recently viewed articles"));
-        });
+        continueButton.click();
+        textView.shouldHave(text("New ways to explore"));
+
+        continueButton.click();
+        textView.shouldHave(text("Reading lists with sync"));
+
+        continueButton.click();
+        textView.shouldHave(text("Send anonymous data"));
+
+        $(MobileBy.id("org.wikipedia.alpha:id/fragment_onboarding_done_button")).click();
+
+        $(MobileBy.id("org.wikipedia.alpha:id/search_container")).shouldBe(visible);
+
+        $(MobileBy.id("org.wikipedia.alpha:id/view_announcement_header_image")).shouldBe(visible);
     }
 }

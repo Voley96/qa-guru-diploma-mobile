@@ -13,7 +13,7 @@ import java.net.URL;
 
 public class BrowserstackMobileDriver implements WebDriverProvider {
 
-    private static BrowserStackConfig config =
+    private static final BrowserStackConfig config =
             ConfigFactory.create(BrowserStackConfig.class);
 
 
