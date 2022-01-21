@@ -1,7 +1,7 @@
 package guru.qa.driver;
 
 import com.codeborne.selenide.WebDriverProvider;
-import guru.qa.config.BrowserStackConfig;
+import guru.qa.config.LocalConfig;
 import io.appium.java_client.android.AndroidDriver;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
@@ -14,24 +14,20 @@ import java.net.URL;
 
 public class LocalAndroidDriver implements WebDriverProvider {
 
-    private static BrowserStackConfig config =
-            ConfigFactory.create(BrowserStackConfig.class);
-    private final static String APP_PATH =
-            "/Users/vladimir/IdeaProjects/qa-guru-hw-mobile/src/test/resources/app-alpha-universal-release.apk";
+    private final LocalConfig config = ConfigFactory.create(LocalConfig.class);
 
 
     @Nonnull
     @Override
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
         desiredCapabilities.setCapability("platformName", "android");
-        desiredCapabilities.setCapability("deviceName", "Pixel 4 API_30");
-        desiredCapabilities.setCapability("deviceName", "emulator-5554");
-        desiredCapabilities.setCapability("version", "11.0");
+        desiredCapabilities.setCapability("deviceName", config.emulatorName());
+        desiredCapabilities.setCapability("version", config.emulatorVersion());
         desiredCapabilities.setCapability("locale", "en");
         desiredCapabilities.setCapability("language", "en");
         desiredCapabilities.setCapability("appPackage", "org.wikipedia.alpha");
         desiredCapabilities.setCapability("appActivity", "org.wikipedia.main.MainActivity");
-        desiredCapabilities.setCapability("app", APP_PATH);
+        desiredCapabilities.setCapability("app", config.appPath());
         try {
             return new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), desiredCapabilities);
         } catch (MalformedURLException e) {

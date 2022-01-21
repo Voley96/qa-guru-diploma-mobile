@@ -3,7 +3,7 @@ package guru.qa.config;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
-        "classpath:browserstack.properties"
+        "classpath:mobile.properties"
 })
 public interface BrowserStackConfig extends Config {
 
