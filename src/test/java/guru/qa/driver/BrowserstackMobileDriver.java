@@ -1,29 +1,25 @@
 package guru.qa.driver;
 
 import com.codeborne.selenide.WebDriverProvider;
+import guru.qa.config.BrowserStackConfig;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import javax.annotation.Nonnull;
 
 public class BrowserstackMobileDriver implements WebDriverProvider {
+    private final BrowserStackConfig config =
+            ConfigFactory.create(BrowserStackConfig.class, System.getProperties());
 
-    public static URL getBrowserstackUrl() {
-        try {
-            return new URL("http://hub.browserstack.com/wd/hub");
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+    @Nonnull
     @Override
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
         // Set your access credentials
-        desiredCapabilities.setCapability("browserstack.user", "qaguru_B5xciN");
-        desiredCapabilities.setCapability("browserstack.key", "TzFxj7ss7siMKTxUURLy");
+        desiredCapabilities.setCapability("browserstack.user", config.user());
+        desiredCapabilities.setCapability("browserstack.key", config.key());
 
         // Set URL of the application under test
         desiredCapabilities.setCapability("app", "bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c");
@@ -39,7 +35,7 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
 
         // Initialise the remote Webdriver using BrowserStack remote URL
         // and desired capabilities defined above
-        return new AndroidDriver<AndroidElement>(getBrowserstackUrl(), desiredCapabilities);
+        return new AndroidDriver<AndroidElement>(config.url(), desiredCapabilities);
     }
 
 }
