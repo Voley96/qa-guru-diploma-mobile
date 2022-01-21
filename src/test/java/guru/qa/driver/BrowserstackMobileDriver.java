@@ -8,13 +8,10 @@ import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import javax.annotation.Nonnull;
-
 public class BrowserstackMobileDriver implements WebDriverProvider {
     private final BrowserStackConfig config =
             ConfigFactory.create(BrowserStackConfig.class, System.getProperties());
 
-    @Nonnull
     @Override
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
         // Set your access credentials
