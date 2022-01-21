@@ -38,6 +38,7 @@ public class AndroidSampleTests {
 
     @Test
     void appiumTest() throws InterruptedException, MalformedURLException {
+        setCaps();
         AndroidDriver<AndroidElement> driver = new AndroidDriver<>(
                 new URL("http://hub.browserstack.com/wd/hub"), desiredCapabilities);
 
