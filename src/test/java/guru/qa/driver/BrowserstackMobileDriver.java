@@ -4,6 +4,7 @@ import com.codeborne.selenide.WebDriverProvider;
 import guru.qa.config.BrowserStackConfig;
 import io.appium.java_client.android.AndroidDriver;
 import org.aeonbits.owner.ConfigFactory;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -35,8 +36,8 @@ public class BrowserstackMobileDriver implements WebDriverProvider {
         desiredCapabilities.setCapability("app", config.app());
 
         // Specify device and os_version for testing
-        desiredCapabilities.setCapability("device", "Google Pixel 3");
-        desiredCapabilities.setCapability("os_version", "9.0");
+        desiredCapabilities.setCapability("device", "Xiaomi Redmi Note 9");
+        desiredCapabilities.setCapability("os_version", "10.0");
 
         // Set other BrowserStack capabilities
         desiredCapabilities.setCapability("project", "First Java Project");
