@@ -16,5 +16,5 @@ public interface BrowserStackConfig extends Config {
     String key();
 
     @Config.Key("browserstack.url")
-    URL url();
+    String url();
 }
