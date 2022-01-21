@@ -7,13 +7,15 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static java.lang.String.*;
 
 
 public class AndroidAppiumSelenideTests extends TestBase {
 
-    SelenideElement textView = $(MobileBy.id("org.wikipedia.alpha:id/primaryTextView"));
-    SelenideElement continueButton = $(MobileBy.id("org.wikipedia.alpha:id/fragment_onboarding_forward_button"));
+    SelenideElement textView = $(MobileBy.id("org.wikipedia.alpha:id/primaryTextView")),
+            continueButton = $(MobileBy.id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")),
+            getStartedButton = $(MobileBy.id("org.wikipedia.alpha:id/fragment_onboarding_done_button")),
+            searchContainer = $(MobileBy.id("org.wikipedia.alpha:id/search_container"));
+
 
     @Test
     void shouldPassWalkThrough() {
@@ -28,10 +30,8 @@ public class AndroidAppiumSelenideTests extends TestBase {
         continueButton.click();
         textView.shouldHave(text("Send anonymous data"));
 
-        $(MobileBy.id("org.wikipedia.alpha:id/fragment_onboarding_done_button")).click();
+        getStartedButton.click();
 
-        $(MobileBy.id("org.wikipedia.alpha:id/search_container")).shouldBe(visible);
-
-        $(MobileBy.id("org.wikipedia.alpha:id/view_announcement_header_image")).shouldBe(visible);
+        searchContainer.shouldBe(visible);
     }
 }

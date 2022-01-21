@@ -2,8 +2,7 @@ package guru.qa.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import guru.qa.driver.BrowserstackMobileDriver;
-import guru.qa.driver.LocalAndroidDriver;
+import guru.qa.driver.RealAndroidDriver;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,7 +16,7 @@ public class TestBase {
     public static void setup() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        Configuration.browser = LocalAndroidDriver.class.getName();
+        Configuration.browser = RealAndroidDriver.class.getName();
         Configuration.startMaximized = false;
         Configuration.browserSize = null;
         Configuration.timeout = 10000;
