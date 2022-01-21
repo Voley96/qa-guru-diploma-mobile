@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AndroidSampleTests {
 
-    public AndroidSampleTests() throws MalformedURLException {
+    public AndroidSampleTests() {
     }
 
     public DesiredCapabilities getCaps() {
@@ -39,11 +39,12 @@ public class AndroidSampleTests {
         return desiredCapabilities;
     }
 
-    AndroidDriver<AndroidElement> driver = new AndroidDriver<>(
-            new URL("http://hub.browserstack.com/wd/hub"), getCaps());
+
 
     @Test
-    void appiumTest() throws InterruptedException {
+    void appiumTest() throws InterruptedException, MalformedURLException {
+        AndroidDriver<AndroidElement> driver = new AndroidDriver<>(
+                new URL("http://hub.browserstack.com/wd/hub"), getCaps());
 
         AndroidElement searchElement = (AndroidElement) new WebDriverWait(driver, 30).until(
                 ExpectedConditions.elementToBeClickable(MobileBy.AccessibilityId("Search Wikipedia")));
