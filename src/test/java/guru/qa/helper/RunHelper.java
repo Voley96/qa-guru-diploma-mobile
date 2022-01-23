@@ -19,6 +19,10 @@ public class RunHelper {
     }
 
     public Class<?> getDriverClass() {
+        if (config.deviceHost() == null) {
+            throw new RuntimeException("Device host should not be null value");
+        }
+
         switch (config.deviceHost()) {
             case "browserstack":
                 return BrowserstackMobileDriver.class;
@@ -32,5 +36,4 @@ public class RunHelper {
                 throw new RuntimeException("Incorrect device host");
         }
     }
-
 }

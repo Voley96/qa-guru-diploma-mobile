@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 
-public class AndroidAppiumSelenideTests extends TestBase {
+class AndroidAppiumSelenideTests extends TestBase {
 
     SelenideElement textView = $(MobileBy.id("org.wikipedia.alpha:id/primaryTextView")),
             continueButton = $(MobileBy.id("org.wikipedia.alpha:id/fragment_onboarding_forward_button")),
