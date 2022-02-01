@@ -4,6 +4,7 @@
 
 - Pass walkthrough
 - Search by query
+- Add new language
 
 ### Libraries have been used in this project
 
