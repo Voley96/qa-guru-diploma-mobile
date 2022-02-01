@@ -62,7 +62,7 @@ class WikiTests extends TestBase {
     @Test
     @Tag("mobile")
     @JiraIssue("HOMEWORK-315")
-    @DisplayName("Add language")
+    @DisplayName("Search by query")
     @Feature("search")
     void shouldSearch() {
         step("Wait fist step loaded", () -> {
