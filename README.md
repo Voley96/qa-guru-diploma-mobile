@@ -51,6 +51,7 @@ gradle -DdeviceHost=browserstack -Duser={put here browserstack user} -Dkey={put 
 
 Usually, tests run on Browserstack or Selenoid via Appium.
 >Appium is an open source test automation framework for use with native, hybrid and mobile web apps. It drives iOS, Android, and Windows apps using the WebDriver protocol.
+
 >Browserstack is cloud web and mobile testing platform that provides developers with the ability to test their websites and mobile applications across on-demand browsers, operating systems and real mobile devices.
 >Selenoid is one of implementation of original Selenium hub. It is using Docker to launch browsers. 
 
