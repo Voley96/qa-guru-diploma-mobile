@@ -15,8 +15,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
 @Owner("oleynik")
@@ -67,7 +66,13 @@ class WikiTests extends TestBase {
     @DisplayName("Search by query")
     @Feature("search")
     void shouldSearch() {
-        step("Skip walkthrough", Selenide::back);
+        step("Wait fist step loaded", () -> {
+            textView.shouldHave(text("The Free Encyclopedia …in over 300 languages"));
+        });
+
+        step("Skip walkthrough", () -> {
+            back();
+        });
 
         step("Click to search input and type query", () -> {
             $(MobileBy.AccessibilityId("Search Wikipedia")).click();
@@ -75,7 +80,6 @@ class WikiTests extends TestBase {
         });
 
         step("Verify more than one result present", () -> {
-
             $$(MobileBy.id("org.wikipedia.alpha:id/page_list_item_title")).shouldHave(sizeGreaterThan(0));
         });
     }
