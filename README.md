@@ -28,9 +28,9 @@
 ### For run tests need to select build params:
 
 * running server (browserstack or selenoid)
-* environment
+* environment (for telegram notification)
 * comment (for telegram notification)
-* 
+
 Run tests on browserstack:
 
 ```bash
