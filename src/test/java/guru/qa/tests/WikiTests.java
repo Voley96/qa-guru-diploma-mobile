@@ -1,6 +1,5 @@
 package guru.qa.tests;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import guru.qa.annotation.JiraIssue;
 import guru.qa.annotation.Layer;
@@ -63,7 +62,7 @@ class WikiTests extends TestBase {
     @Test
     @Tag("mobile")
     @JiraIssue("HOMEWORK-315")
-    @DisplayName("Search by query")
+    @DisplayName("Add language")
     @Feature("search")
     void shouldSearch() {
         step("Wait fist step loaded", () -> {
@@ -81,6 +80,26 @@ class WikiTests extends TestBase {
 
         step("Verify more than one result present", () -> {
             $$(MobileBy.id("org.wikipedia.alpha:id/page_list_item_title")).shouldHave(sizeGreaterThan(0));
+        });
+    }
+
+    @Test
+    @Tag("mobile")
+    @JiraIssue("HOMEWORK-315")
+    @DisplayName("Add language")
+    @Feature("language")
+    void shouldAddLanguage() {
+        step("Click 'Add or edit languages' button", () ->
+                $(MobileBy.id("org.wikipedia.alpha:id/addLangContainer")).click());
+
+        step("Tap 'Add language' button", () ->
+                $(MobileBy.xpath("//android.widget.TextView[@text='ADD LANGUAGE']")).click());
+
+        step("Select Russian language", () ->
+                $(MobileBy.xpath("//android.widget.LinearLayout[@index='2']")).click());
+
+        step("Verify Russian language present on languages list", () -> {
+            $(MobileBy.xpath("//android.widget.TextView[@text='Русский']")).shouldBe(visible);
         });
     }
 }
