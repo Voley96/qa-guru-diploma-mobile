@@ -42,6 +42,13 @@ Run tests on selenoid:
 ```bash
 gradle clean test -DdeviceHost=selenoid
 ```
+
+Run test with not filled browserstack properties:
+
+```bash
+gradle -DdeviceHost=browserstack -Duser={put here browserstack user} -Dkey={put here browserstack access key} -Dapp={put here your browserstack app id} clean test
+```
+
 Usually, tests run on Browserstack or Selenoid via Appium.
 >Appium is an open source test automation framework for use with native, hybrid and mobile web apps. It drives iOS, Android, and Windows apps using the WebDriver protocol.
 >Browserstack is cloud web and mobile testing platform that provides developers with the ability to test their websites and mobile applications across on-demand browsers, operating systems and real mobile devices.
