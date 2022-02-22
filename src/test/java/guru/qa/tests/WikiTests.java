@@ -98,8 +98,7 @@ class WikiTests extends TestBase {
         step("Select Russian language", () ->
                 $(MobileBy.xpath("//android.widget.LinearLayout[@index='2']")).click());
 
-        step("Verify Russian language present on languages list", () -> {
-            $(MobileBy.xpath("//android.widget.TextView[@text='Русский']")).shouldBe(visible);
-        });
+        step("Verify Russian language present on languages list", () ->
+                $(MobileBy.xpath("//android.widget.TextView[@text='Русский']")).shouldBe(visible));
     }
 }

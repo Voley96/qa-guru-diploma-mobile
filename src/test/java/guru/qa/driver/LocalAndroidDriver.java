@@ -16,7 +16,6 @@ public class LocalAndroidDriver implements WebDriverProvider {
 
     private final LocalConfig config = ConfigFactory.create(LocalConfig.class);
 
-
     @Nonnull
     @Override
     public WebDriver createDriver(DesiredCapabilities desiredCapabilities) {
